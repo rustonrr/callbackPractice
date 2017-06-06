@@ -24,20 +24,35 @@ and what you should write is the sayHi function that makes the code above work,
 
   // Code Here
 
-  
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
-first(names, function(firstName){
-  console.log('The first name in names is ' + firstName)
-});
 
+
+function first(names, callback) {
+var firstName = names[0];
+callback(firstName);
+}
+
+
+
+first(names, 
+
+  function(firstName){
+  console.log('The first name in names is ' + firstName)
+}
+
+);
 
 
 // 2. Write a function called last which returns the last item of the array using a callback function.
 
   //Code Here
+function last(names, callBack2){
+  var lastNameInList = names[names.length - 1];
+  return callBack2(lastNameInList);
+}
 
-last(names, function(lastName){
-  console.log('The last name in names is ' + lastName);
+
+last(names, function(lastNameInList){console.log('The last name in names is ' + lastNameInList);
 });
 
 
@@ -46,9 +61,14 @@ last(names, function(lastName){
 
   //Code Here
 
+  function multiply(num1, num2, multiplyFunction) {
+    var answer = num1 * num2;
+    return multiplyFunction(answer);
 
-multiply(4, 3, function(answer){
-  console.log('The answer is ' + answer); //should console.log 12
+  }
+
+
+multiply(4, 3, function(answer){console.log('The answer is ' + answer); //should console.log 12
 })
 
 
@@ -58,13 +78,28 @@ multiply(4, 3, function(answer){
 
   //Code Here 
 
-contains(names, 'Colt', function(result){
+  function contains(names, target, verify) {
+    var result = false;
+    for(i = 0; i < names.length; i++) {
+      if(target === names[i]) {
+        result = true
+      }
+    } verify(result)
+  }
+
+
+
+contains(names, 'Colt', 
+
+  function(result){
   if(result === true){
     console.log('Colt is in the array');
   } else {
     console.log('Colt is not in the array');
   }
-});
+  }
+
+);
 
 
 
@@ -72,6 +107,8 @@ contains(names, 'Colt', function(result){
 // the callback function with the array of unique names.
 
     //Code Here
+
+
 
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
